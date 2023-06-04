@@ -1,17 +1,16 @@
 package com.wellsfargo.counselor.entity;
 
-
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Advisor {
+public class Client {
 
     @Id
     @GeneratedValue()
-    private long advisorId;
+    private long ClientId;
 
     @Column(nullable = false)
     private String firstName;
@@ -28,21 +27,19 @@ public class Advisor {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany
-    @JoinColumn(name = "Advisor_id")
-    private List<Client> clients = new ArrayList<Client>();
+    @Column(nullable = false)
+    private Portfolio portfolio;
 
-    protected Advisor() {
-
+    public Client() {
     }
 
-    public Advisor(String firstName, String lastName, String address, String phone, String email, List<Client> clients) {
+    public Client(String firstName, String lastName, String address, String phone, String email, Portfolio portfolio) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.clients = clients;
+        this.portfolio = portfolio;
     }
 
     public String getFirstName() {
@@ -85,11 +82,11 @@ public class Advisor {
         this.email = email;
     }
 
-    public List<Client> getClients() {
-        return clients;
+    public Portfolio getPortfolio() {
+        return portfolio;
     }
 
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
     }
 }
